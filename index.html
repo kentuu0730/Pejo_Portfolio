@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kent Brian Austin Pejo - Portfolio</title>
     <style>
+        /* Global Styles */
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
@@ -12,6 +13,9 @@
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
             --text-color: #333;
+            --gradient-start: #9CECFB;
+            --gradient-mid: #65C7F7;
+            --gradient-end: #0052D4;
         }
         
         * {
@@ -59,6 +63,7 @@
             font-weight: bold;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .btn:hover {
@@ -72,6 +77,7 @@
             padding: 60px 0;
         }
         
+        /* Header Styles */
         header {
             background-color: var(--primary-color);
             color: white;
@@ -126,6 +132,7 @@
             transition: all 0.3s ease;
         }
         
+        /* Hero Section */
         #hero {
             height: 100vh;
             display: flex;
@@ -134,11 +141,14 @@
             color: white;
             text-align: center;
             padding-top: 80px;
+            position: relative;
         }
         
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
         .hero-content h1 {
@@ -158,6 +168,76 @@
             margin-bottom: 40px;
         }
         
+        /* Profile image with circular gradient */
+        .profile-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 30px;
+        }
+        
+        .profile-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #232526;
+            overflow: hidden;
+        }
+        
+        .profile-border {
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            top: -5%;
+            left: -5%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(to right, #a8ff78, #78ffd6) border-box;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: 1;
+        }
+        
+        .profile-accent1 {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #a8ff78, #78ffd6);
+            top: -10px;
+            right: 15px;
+            opacity: 0.8;
+            z-index: 1;
+        }
+        
+        .profile-accent2 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #78ffd6, #a8ff78);
+            bottom: 10px;
+            left: -15px;
+            opacity: 0.8;
+            z-index: 1;
+        }
+        
+        .profile-img {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            top: 5%;
+            left: 5%;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        /* About Section */
         #about {
             background-color: white;
         }
@@ -201,6 +281,7 @@
             background-color: var(--secondary-color);
         }
         
+        /* Projects Section */
         #projects {
             background-color: var(--light-color);
         }
@@ -250,6 +331,86 @@
             gap: 15px;
         }
         
+        /* Modal/Popup Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 1000px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: var(--accent-color);
+        }
+        
+        .modal-title {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .modal-image-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Credentials Section */
         #credentials {
             background-color: white;
         }
@@ -276,6 +437,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
+        /* Contact Section */
         #contact {
             background-color: var(--primary-color);
             color: white;
@@ -306,6 +468,7 @@
             color: var(--secondary-color);
         }
         
+        /* Footer */
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -313,6 +476,7 @@
             padding: 20px 0;
         }
         
+        /* Responsive Styles */
         @media screen and (max-width: 768px) {
             .nav-links {
                 position: absolute;
@@ -357,10 +521,32 @@
             section {
                 padding: 40px 0;
             }
+            
+            .profile-container {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+        
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
             <nav>
@@ -383,9 +569,17 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section id="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="profile-container">
+                    <div class="profile-circle"></div>
+                    <div class="profile-border"></div>
+                    <div class="profile-accent1"></div>
+                    <div class="profile-accent2"></div>
+                    <img src="images/mepic2.jpg" alt="Kent Brian Austin Pejo" class="profile-img">
+                </div>
                 <h1>Kent Brian Austin Pejo</h1>
                 <h2>Programmer</h2>
                 <p>Building innovative solutions through code</p>
@@ -394,6 +588,7 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about">
         <div class="container">
             <h2>About Me</h2>
@@ -449,6 +644,7 @@
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <h2>Projects</h2>
@@ -463,7 +659,7 @@
                         <h3>Asteroids Python Game</h3>
                         <p>In response to the declining popularity of traditional arcades and the resulting loss of communal gaming experiences, this project aims to revitalize the arcade-style game Asteroids by integrating it with sustainable development objectives. By making an Asteroids game using Python Turtle, the project aims to engage players of all ages in missions to clean up space debris.</p>
                         <div class="project-links">
-                            <a href="#" class="btn">View Project</a>
+                            <a href="#" class="btn project-btn" data-project="asteroids">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -476,7 +672,7 @@
                         <h3>ThriftSmart: Digital Inventory Revolution</h3>
                         <p>ThriftSmart is a sophisticated digital inventory and management system developed to address ThriftedGems.ph's challenges. It features automated order processing, real-time inventory tracking, and extensive reporting capabilities. By ensuring accurate and up-to-date inventory data, ThriftSmart aims to improve customer satisfaction, streamline operations, and reduce errors.</p>
                         <div class="project-links">
-                            <a href="#" class="btn">View Project</a>
+                            <a href="#" class="btn project-btn" data-project="thriftSmart">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -489,7 +685,7 @@
                         <h3>ThriftedGems.ph Order and Inventory Management System</h3>
                         <p>The system is a digital order and inventory management system that was mostly created in C# and has a SQL Server-managed backend database. Employees will find the system's user-friendly graphical user interface to be quite helpful in processing orders, managing inventory, and creating reports quickly and efficiently.</p>
                         <div class="project-links">
-                            <a href="#" class="btn">View Project</a>
+                            <a href="#" class="btn project-btn" data-project="thriftedGems">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -510,6 +706,7 @@
         </div>
     </section>
 
+    <!-- Credentials Section -->
     <section id="credentials">
         <div class="container">
             <h2>Credentials</h2>
@@ -529,6 +726,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <h2>Contact Me</h2>
@@ -556,20 +754,74 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 Kent Brian Austin Pejo. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Project Modals -->
+    <!-- Asteroids Project Modal -->
+    <div id="asteroidsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Asteroids Python Game</h2>
+            <div class="modal-images">
+                <div class="modal-image-container">
+                    <img src="images/asteroids.png" alt="Asteroids Python Game" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ThriftSmart Project Modal -->
+    <div id="thriftSmartModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">ThriftSmart: Digital Inventory Revolution</h2>
+            <div class="modal-images">
+                <div class="modal-image-container">
+                    <img src="images/Login.png" alt="ThriftSmart Login" class="modal-image">
+                </div>
+                <div class="modal-image-container">
+                    <img src="images/Inventory.png" alt="ThriftSmart Inventory" class="modal-image">
+                </div>
+                <div class="modal-image-container">
+                    <img src="images/Order.png" alt="ThriftSmart Order" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ThriftedGems Project Modal -->
+    <div id="thriftedGemsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">ThriftedGems.ph Order and Inventory Management System</h2>
+            <div class="modal-images">
+                <div class="modal-image-container">
+                    <img src="images/ThriftSmart.png" alt="ThriftedGems System" class="modal-image">
+                </div>
+                <div class="modal-image-container">
+                    <img src="images/ThriftSmartLogin.png" alt="ThriftedGems Login" class="modal-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script>
+        // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         const links = document.querySelectorAll('.nav-links li');
         
         hamburger.addEventListener('click', () => {
+            // Toggle Nav
             navLinks.classList.toggle('active');
             
+            // Animate Links
             links.forEach((link, index) => {
                 if (link.style.animation) {
                     link.style.animation = '';
@@ -578,9 +830,11 @@
                 }
             });
             
+            // Hamburger Animation
             hamburger.classList.toggle('toggle');
         });
         
+        // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -593,6 +847,7 @@
                     behavior: 'smooth'
                 });
                 
+                // Close mobile menu if open
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                     hamburger.classList.remove('toggle');
@@ -604,11 +859,13 @@
             });
         });
         
+        // Add animation to nav on scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             header.classList.toggle('scrolled', window.scrollY > 0);
         });
         
+        // Add animation to skill bars
         const skillBars = document.querySelectorAll('.skill-level');
         
         const animateSkillBars = () => {
@@ -622,6 +879,7 @@
             });
         };
         
+        // Animate skill bars when scrolled into view
         const aboutSection = document.querySelector('#about');
         
         const observer = new IntersectionObserver((entries) => {
@@ -634,6 +892,87 @@
         }, { threshold: 0.2 });
         
         observer.observe(aboutSection);
+        
+        // Modal/Popup Functionality
+        const projectButtons = document.querySelectorAll('.project-btn');
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close');
+        
+        // Map project IDs to their respective modals
+        const projectModalMap = {
+            'asteroids': document.getElementById('asteroidsModal'),
+            'thriftSmart': document.getElementById('thriftSmartModal'),
+            'thriftedGems': document.getElementById('thriftedGemsModal')
+        };
+        
+        // Open modal when project button is clicked
+        projectButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project');
+                const modal = projectModalMap[projectId];
+                
+                if (modal) {
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+                }
+            });
+        });
+        
+        // Close modal when the close button is clicked
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            });
+        });
+        
+        // Close modal when clicking outside of the modal content
+        window.addEventListener('click', function(event) {
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling
+                }
+            });
+        });
+        
+        // When the page loads, check if any modals need to be shown
+        window.addEventListener('load', () => {
+            // Check URL for hash params that might indicate a modal should be shown
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#project-')) {
+                const projectId = hash.replace('#project-', '');
+                const modal = projectModalMap[projectId];
+                
+                if (modal) {
+                    setTimeout(() => {
+                        modal.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    }, 500); // Small delay to ensure page has loaded
+                }
+            }
+        });
+        
+        // Add animations to project cards when they come into view
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        projectCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            projectObserver.observe(card);
+        });
     </script>
 </body>
 </html>
