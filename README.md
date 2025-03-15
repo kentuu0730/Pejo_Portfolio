@@ -3,6 +3,11 @@ IT103 Web Programming - A222 - PORTFOLIO
 Project Overview
   This is a simple personal portfolio webpage built using HTML. The project consists of a single index.html file showcasing personal details, projects, and contact information.
 
+Access this link:
+    https://kentuu0730.github.io/Pejo_Portfolio/
+
+
+ALTERNATIVE:
 Installation and Setup
   Prerequisites
   ---A web browser (Chrome, Firefox, Edge, etc.)
