@@ -1,4 +1,4 @@
-IT103 Web Programming - A22 - PORTFOLIO
+IT103 Web Programming - A222 - PORTFOLIO
 
 Project Overview
   This is a simple personal portfolio webpage built using HTML. The project consists of a single index.html file showcasing personal details, projects, and contact information.
